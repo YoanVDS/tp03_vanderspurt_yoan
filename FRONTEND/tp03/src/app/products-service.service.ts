@@ -1,11 +1,18 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
+import { Product } from './product'
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ProductsServiceService {
+export class ProductsService {
+  
 
-  constructor() { }
+  constructor(private httpClient: HttpClient) { }
 
-  products: Product[] = {};
+  public getProducts(){
+    return this.httpClient.get<Array<Product>>(environment.baseUrl);
+  }
 }
